@@ -41,10 +41,12 @@ class SubmissionInsertShell extends Shell
     
     private function insert($filename){
         $handle = fopen($filename, "r");
+        if($handle === FALSE){
+            echo "File Not Found".__METHOD__;
+            return;
+        }
         $SubmissionsTable = TableRegistry::get('Submissions');
 
-        //$SubmissionsTable = new SubmissionsTable();
-        
         //property_to_csv_column mapping
         $mapping = ['contest_id' =>0,
          'created' =>1,
@@ -62,19 +64,11 @@ class SubmissionInsertShell extends Shell
         
         while(($data = fgetcsv($handle, 1000, ",")) !== FALSE){
             $submission = $SubmissionsTable->newEntity();
-        
+
             foreach($mapping as $property => $index){
                 $submission->{$property} = $data[$index];
             }
-            //var_dump($submission);
             $SubmissionsTable->save($submission);
-            
-            // $num = count($data);
-            // echo "<p> $num fields in line $row: <br /></p>\n";
-            // $row++;
-            // for ($c=0; $c < $num; $c++) {
-            //     echo $data[$c] . "<br />\n";
-            // }
         }
         fclose($handle);
         
