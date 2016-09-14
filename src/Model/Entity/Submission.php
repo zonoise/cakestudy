@@ -33,4 +33,10 @@ class Submission extends Entity
         '*' => true,
         'id' => false
     ];
+    
+    protected function _getFullUrl()
+    {
+        return 
+        "http://".$this->_properties['contest_id'].".contest.atcoder.jp".$this->_properties['url'];
+    }
 }
