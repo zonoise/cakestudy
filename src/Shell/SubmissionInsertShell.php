@@ -52,7 +52,7 @@ class SubmissionInsertShell extends Shell
          'created' =>1,
          'task_id' =>2,
          'user_name' =>3, 
-         'langage' =>4,
+         'language' =>4,
          'score' =>5,
         //  'source_code_size' =>6
         //  'status' =>7
@@ -71,7 +71,5 @@ class SubmissionInsertShell extends Shell
             $SubmissionsTable->save($submission);
         }
         fclose($handle);
-        
     }
-    
 }
