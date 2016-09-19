@@ -5,7 +5,7 @@
 
 <div class="submissions index large-9 medium-8 columns content">
     <h3><?= __('Submissions') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class='table table-bordered'>
         <thead>
             <tr>
                 <th><?= $this->Paginator->sort('created') ?></th>
@@ -36,11 +36,8 @@
         </tbody>
     </table>
     <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
+            <?= $this->Paginator->numbers(['prev'=>'< ' . __('prev') ,'next'=>__('next') . ' >']) ?>
+
         <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>
